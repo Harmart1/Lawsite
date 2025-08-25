@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { 
   AILegalAssistant, 
   SmartScheduler, 
@@ -6,6 +7,9 @@ import {
   LegalNewsFeed, 
   LegalAssessment 
 } from './components/CuttingEdgeFeatures';
+import { Scale, Shield, Lightbulb, Briefcase, TrendingUp, MessageSquare, Award, Cpu, UserCheck, Globe2, Mail, Phone, MapPin } from 'lucide-react';
+import ContactForm from './components/ContactForm';
+import Testimonials from './components/Testimonials';
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,12 +36,13 @@ export default function App() {
             <nav className="hidden md:flex space-x-8">
               <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
               <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a>
+              <a href="#testimonials" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Testimonials</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
             </nav>
             
             {/* Desktop CTA Button */}
             <div className="hidden md:block">
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-5 py-2 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
                 Schedule Consultation
               </button>
             </div>
@@ -76,6 +81,13 @@ export default function App() {
                 >
                   About
                 </a>
+                <a
+                  href="#testimonials"
+                  className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Testimonials
+                </a>
                 <a 
                   href="#contact" 
                   className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded transition-colors"
@@ -83,7 +95,7 @@ export default function App() {
                 >
                   Contact
                 </a>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full text-left">
+                <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-4 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-600 transition-all duration-300 w-full text-center">
                   Schedule Consultation
                 </button>
               </nav>
@@ -93,25 +105,43 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 md:py-32">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      <section
+        className="relative text-white py-24 md:py-40 bg-cover bg-center"
+        style={{ backgroundImage: "url('/src/assets/hero_background.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Expert Legal Solutions for Your Business
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Specialized expertise in civil litigation, privacy law, intellectual property, 
-              and economic development consulting in Sault Ste. Marie, Ontario.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight"
+            >
+              Modern Legal Solutions for a Digital World
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-200"
+            >
+              Specialized expertise in civil litigation, privacy law, and intellectual property
+              in Sault Ste. Marie, Ontario.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
                 Schedule Free Consultation
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:scale-105">
                 Learn More
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -133,38 +163,38 @@ export default function App() {
               {
                 title: "Civil Litigation",
                 description: "Expert representation in complex civil matters with a track record of success.",
-                icon: "⚖️"
+                icon: <Scale className="w-10 h-10 text-blue-600" />
               },
               {
                 title: "Privacy Law",
                 description: "Comprehensive privacy compliance and data protection strategies.",
-                icon: "🔒"
+                icon: <Shield className="w-10 h-10 text-blue-600" />
               },
               {
                 title: "Intellectual Property",
                 description: "Protecting your innovations and creative assets in the digital age.",
-                icon: "💡"
+                icon: <Lightbulb className="w-10 h-10 text-blue-600" />
               },
               {
                 title: "Business Law",
                 description: "Strategic legal counsel for business growth and compliance.",
-                icon: "🏢"
+                icon: <Briefcase className="w-10 h-10 text-blue-600" />
               },
               {
                 title: "Economic Development",
                 description: "Consulting services for community and business development initiatives.",
-                icon: "📈"
+                icon: <TrendingUp className="w-10 h-10 text-blue-600" />
               },
               {
                 title: "Legal Consulting",
                 description: "Strategic advice and risk management for complex legal challenges.",
-                icon: "🎯"
+                icon: <MessageSquare className="w-10 h-10 text-blue-600" />
               }
             ].map((service, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{service.icon}</div>
+              <div key={index} className="bg-gray-50 p-8 rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="mb-5">{service.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
               </div>
             ))}
           </div>
@@ -222,30 +252,52 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-4">Why Choose Tim Harmar Legal?</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <span className="mr-3">✓</span>
-                  Award-winning legal expertise
+            <div className="bg-gradient-to-br from-blue-600 to-teal-500 p-8 rounded-2xl text-white">
+              <h3 className="text-2xl font-bold mb-6">Why Choose Tim Harmar Legal?</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <div className="bg-white/20 p-2 rounded-full mr-4">
+                    <Award className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Award-Winning Expertise</h4>
+                    <p className="text-blue-100">Recognized for excellence in the legal field.</p>
+                  </div>
                 </li>
-                <li className="flex items-center">
-                  <span className="mr-3">✓</span>
-                  Cutting-edge legal technology
+                <li className="flex items-start">
+                  <div className="bg-white/20 p-2 rounded-full mr-4">
+                    <Cpu className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Cutting-Edge Technology</h4>
+                    <p className="text-blue-100">Leveraging AI for efficient legal solutions.</p>
+                  </div>
                 </li>
-                <li className="flex items-center">
-                  <span className="mr-3">✓</span>
-                  Personalized service approach
+                <li className="flex items-start">
+                  <div className="bg-white/20 p-2 rounded-full mr-4">
+                    <UserCheck className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Personalized Service</h4>
+                    <p className="text-blue-100">Tailored legal strategies for your unique needs.</p>
+                  </div>
                 </li>
-                <li className="flex items-center">
-                  <span className="mr-3">✓</span>
-                  Local expertise, global perspective
+                <li className="flex items-start">
+                  <div className="bg-white/20 p-2 rounded-full mr-4">
+                    <Globe2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Local & Global Perspective</h4>
+                    <p className="text-blue-100">Deep local knowledge with a broad outlook.</p>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-900 text-white">
@@ -254,34 +306,52 @@ export default function App() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               Contact us today for a consultation and discover how our legal expertise can help your business thrive.
+              Fill out the form below or use the contact details to get in touch.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <div className="text-4xl mb-4">📧</div>
-              <h3 className="text-xl font-semibold mb-2">Email</h3>
-              <a href="mailto:tharmar@timharmar.com" className="text-blue-400 hover:text-blue-300">
-                tharmar@timharmar.com
-              </a>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-8">
+              <div className="flex items-start">
+                <div className="bg-blue-600/20 p-3 rounded-full mr-4">
+                  <Mail className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Email</h3>
+                  <p className="text-gray-400">General Inquiries</p>
+                  <a href="mailto:tharmar@timharmar.com" className="text-blue-400 hover:text-blue-300 break-all">
+                    tharmar@timharmar.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <div className="bg-blue-600/20 p-3 rounded-full mr-4">
+                  <Phone className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Phone</h3>
+                  <p className="text-gray-400">Let's Talk</p>
+                  <a href="tel:+17059993657" className="text-blue-400 hover:text-blue-300">
+                    +1 (705) 999-3657
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <div className="bg-blue-600/20 p-3 rounded-full mr-4">
+                  <MapPin className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Location</h3>
+                  <p className="text-gray-400">
+                    Sault Ste. Marie, Ontario, Canada
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <div className="text-4xl mb-4">📞</div>
-              <h3 className="text-xl font-semibold mb-2">Phone</h3>
-              <a href="tel:+17059993657" className="text-blue-400 hover:text-blue-300">
-                +1 (705) 999-3657
-              </a>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <div className="text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-semibold mb-2">Location</h3>
-              <p className="text-gray-300">
-                Sault Ste. Marie<br />
-                Ontario, Canada
-              </p>
-            </div>
+
+            <ContactForm />
           </div>
         </div>
       </section>
